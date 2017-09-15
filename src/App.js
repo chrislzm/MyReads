@@ -18,6 +18,13 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then(books => this.setState({books}))
   }
 
+  updateBook(book,shelf) {
+    console.log("Updating book: " + book.title + " to shelf: " + shelf )
+    BooksAPI.update(book,shelf).then(result => { console.log(result)})
+    //book.shelf = shelf;
+    //setState
+  }
+
   render() {
     return (
       <div className="app">
@@ -51,9 +58,9 @@ class BooksApp extends React.Component {
               <div>
                 { this.state.books && (
                   <div>
-                    <BookShelf books={this.state.books.filter(book => book.shelf === "currentlyReading")} title="Currently Reading" />
-                    <BookShelf books={this.state.books.filter(book => book.shelf === "wantToRead")} title="Want to Read" />
-                    <BookShelf books={this.state.books.filter(book => book.shelf === "read")} title="Read" />
+                    <BookShelf handleChange={this.updateBook} books={this.state.books.filter(book => book.shelf === "currentlyReading")} title="Currently Reading" />
+                    <BookShelf handleChange={this.updateBook} books={this.state.books.filter(book => book.shelf === "wantToRead")} title="Want to Read" />
+                    <BookShelf handleChange={this.updateBook} books={this.state.books.filter(book => book.shelf === "read")} title="Read" />
                   </div>
                 )}
               </div>
