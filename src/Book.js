@@ -32,7 +32,7 @@ const Book = (props) => (
   <li>
     <div className="book">
       <div className="book-top">
-        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${props.book.imageLinks.thumbnail})` }}></div>
+        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: props.book.imageLinks ? `url(${props.book.imageLinks.thumbnail})` : ''}}></div>
         <div className="book-shelf-changer">
           <select value={props.book.shelf} onChange={ (event) => props.handleChange(props.book,event.target.value)}>
             {
@@ -44,7 +44,7 @@ const Book = (props) => (
         </div>
       </div>
       <div className="book-title">{ props.book.title }</div>
-      <div className="book-authors">{ props.book.authors[0] }</div>
+      <div className="book-authors">{ props.book.authors && (props.book.authors[0]) }</div>
     </div>
   </li>
 );
