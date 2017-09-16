@@ -21,6 +21,7 @@ class SearchBooks extends React.Component {
   }
 
   render() {
+    let numResults = this.state.books ? this.state.books.length : 0
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -35,6 +36,7 @@ class SearchBooks extends React.Component {
           </div>
         </div>
         <div className="search-books-results">
+          { this.state.query && (<div>Your search returned { numResults} result(s)</div>)}
           <BookShelf handleChange={this.props.handleChange} books={this.state.books} title="Search Results" />
         </div>
       </div>
