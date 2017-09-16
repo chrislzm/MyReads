@@ -28,13 +28,16 @@ const shelves = [
   },
 ]
 
-const Book = (props) => (
+const Book = (props) => {
+  let shelf
+  shelf = props.book.shelf === undefined ? "none" : props.book.shelf
+  return(
   <li>
     <div className="book">
       <div className="book-top">
         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: props.book.imageLinks ? `url(${props.book.imageLinks.thumbnail})` : ''}}></div>
         <div className="book-shelf-changer">
-          <select value={props.book.shelf} onChange={ (event) => props.handleChange(props.book,event.target.value)}>
+          <select value={ shelf } onChange={ (event) => props.handleChange(props.book,event.target.value)}>
             {
               shelves.map(shelf => (
                 <option value={shelf.id} disabled={shelf.disabled} key={shelf.id}>{shelf.name}</option>
@@ -47,6 +50,6 @@ const Book = (props) => (
       <div className="book-authors">{ props.book.authors && (props.book.authors[0]) }</div>
     </div>
   </li>
-);
+)};
 
 export default Book
