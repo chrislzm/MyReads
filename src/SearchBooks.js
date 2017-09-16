@@ -7,7 +7,6 @@ class SearchBooks extends React.Component {
 
   state = {
     query: '',
-    results: 0,
     books: [],
     searching: false
   }
@@ -19,18 +18,18 @@ class SearchBooks extends React.Component {
       BooksAPI.search(query,20).then(books => {
         // Our query may have been updated since we searched
         if(!books.error && this.state.query === query) {
-          this.setState({books, results: books.length})
+          this.setState({books})
         }
         this.setState({searching:false})
       })
     } else {
       // Clear books from results for empty queries
-      this.setState({ books: [], results: 0})
+      this.setState({ books: []})
     }
   }
 
   render() {
-    const {query, searching, results, books} = this.state;
+    const {query, searching, books} = this.state;
     return (
       <div className="search-books">
         <div className="search-books-bar">
