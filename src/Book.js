@@ -28,21 +28,26 @@ const shelves = [
 },
 ]
 
+const updateBookHandleChange = (book,shelf,handleChange) => {
+  book.shelf = shelf
+  handleChange(book,shelf)
+}
+
 const Book = (props) => {
-  let shelf
-  shelf = props.book.shelf === undefined ? "none" : props.book.shelf
+  const {book,handleChange} = props
+  let shelf = book.shelf ? book.shelf : "none"
   return(
     <li>
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: props.book.imageLinks ? `url(${props.book.imageLinks.thumbnail})` : ''}}></div>
           <div className="book-shelf-changer">
-            <select value={ shelf } onChange={ (event) => props.handleChange(props.book,event.target.value)}>
-              {
-                shelves.map(shelf => (
-                  <option value={shelf.id} disabled={shelf.disabled} key={shelf.id}>{shelf.name}</option>
-                ))
-              }
+            <select
+              value={ shelf }
+              onChange={ (event) => updateBookHandleChange(book,event.target.value,handleChange)}>
+              { shelves.map(shelf => (
+                <option value={shelf.id} disabled={shelf.disabled} key={shelf.id}>{shelf.name}</option>
+              ))}
             </select>
           </div>
         </div>
