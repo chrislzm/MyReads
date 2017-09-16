@@ -46,8 +46,11 @@ class SearchBooks extends React.Component {
         </div>
         <div className="search-books-results">
           { searching && (<div>Searching...</div>)}
-          { !searching && query.length > 0 && (<div>Your search returned {results} result(s)</div>)}
-          <BookShelf handleChange={this.props.handleChange} books={books} title="Search Results" />
+          { !searching && query.length > 0 &&
+            (
+              <BookShelf handleChange={this.props.handleChange} books={books} title="Search Results" />
+            )
+          }
         </div>
       </div>
     )
