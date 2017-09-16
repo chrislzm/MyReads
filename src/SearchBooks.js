@@ -30,7 +30,7 @@ class SearchBooks extends React.Component {
   }
 
   render() {
-    let numResults = this.state.books.length ? this.state.books.length : 0
+    const {query, searching, results, books} = this.state;
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -39,15 +39,15 @@ class SearchBooks extends React.Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              value={this.state.query}
+              value={query}
               onChange={(event) => this.updateQuery(event.target.value)}
             />
           </div>
         </div>
         <div className="search-books-results">
-          { this.state.searching && (<div>Searching...</div>)}
-          { !this.state.searching && this.state.query.length > 0 && (<div>Your search returned { numResults} result(s)</div>)}
-          <BookShelf handleChange={this.props.handleChange} books={this.state.books} title="Search Results" />
+          { searching && (<div>Searching...</div>)}
+          { !searching && query.length > 0 && (<div>Your search returned {results} result(s)</div>)}
+          <BookShelf handleChange={this.props.handleChange} books={books} title="Search Results" />
         </div>
       </div>
     )
