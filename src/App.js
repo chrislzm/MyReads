@@ -16,14 +16,24 @@ class BooksApp extends React.Component {
   }
 
   updateBook = (bookToUpdate,newShelf) => {
+    let newBook = true;
+    // If the book is already in our local state, update its shelf
     BooksAPI.update(bookToUpdate,newShelf).then(() => {
       for(let book of this.state.books) {
         if(book.id === bookToUpdate.id) {
           book.shelf = newShelf
+          newBook = false
           this.forceUpdate()
           break
         }
       }
+      if(newBook) {
+        bookToUpdate.shelf = newShelf
+        this.setState((prevState) => ({
+          books: [...prevState.books,bookToUpdate]
+        }))
+      }
+      console.log("Updated main page.")
     })
   }
 
