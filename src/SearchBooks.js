@@ -7,21 +7,30 @@ class SearchBooks extends React.Component {
 
   state = {
     query: '',
-    books: []
+    results: 0,
+    books: [],
+    searching: false
   }
 
   updateQuery = (query) => {
     this.setState({ query: query })
     if(query.length > 0) {
-      BooksAPI.search(query,20).then(books => this.setState({books}))
-      BooksAPI.search(query,20).then(books => console.log(books))
+      this.setState({searching:true})
+      BooksAPI.search(query,20).then(books => {
+        // Our query may have been updated since we searched
+        if(!books.error && this.state.query === query) {
+          this.setState({books, results: books.length})
+        }
+        this.setState({searching:false})
+      })
     } else {
-      this.setState({ books: []})
+      // Clear books from results for empty queries
+      this.setState({ books: [], results: 0})
     }
   }
 
   render() {
-    let numResults = this.state.books ? this.state.books.length : 0
+    let numResults = this.state.books.length ? this.state.books.length : 0
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -36,7 +45,8 @@ class SearchBooks extends React.Component {
           </div>
         </div>
         <div className="search-books-results">
-          { this.state.query && (<div>Your search returned { numResults} result(s)</div>)}
+          { this.state.searching && (<div>Searching...</div>)}
+          { !this.state.searching && this.state.query.length > 0 && (<div>Your search returned { numResults} result(s)</div>)}
           <BookShelf handleChange={this.props.handleChange} books={this.state.books} title="Search Results" />
         </div>
       </div>
