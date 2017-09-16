@@ -1,14 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import BookShelf from './BookShelf'
+import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends React.Component {
 
   state = {
-    query: ''
+    query: '',
+    books: []
   }
 
   updateQuery = (query) => {
     this.setState({ query: query })
+    if(query.length > 0) {
+      BooksAPI.search(query,20).then(books => this.setState({books}))
+    }
   }
 
   render() {
@@ -26,7 +32,7 @@ class SearchBooks extends React.Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <BookShelf handleChange={this.props.handleChange} books={this.state.books} title="Search Results" />
         </div>
       </div>
     )
