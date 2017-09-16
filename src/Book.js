@@ -28,11 +28,6 @@ const shelves = [
 },
 ]
 
-const updateBookHandleChange = (book,shelf,handleChange) => {
-  book.shelf = shelf
-  handleChange(book,shelf)
-}
-
 const Book = (props) => {
   const {book,handleChange} = props
   let shelf = book.shelf ? book.shelf : "none"
@@ -44,7 +39,7 @@ const Book = (props) => {
           <div className="book-shelf-changer">
             <select
               value={ shelf }
-              onChange={ (event) => updateBookHandleChange(book,event.target.value,handleChange)}>
+              onChange={ (event) => handleChange(book,event.target.value)}>
               { shelves.map(shelf => (
                 <option value={shelf.id} disabled={shelf.disabled} key={shelf.id}>{shelf.name}</option>
               ))}

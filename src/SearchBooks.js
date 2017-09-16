@@ -11,6 +11,17 @@ class SearchBooks extends React.Component {
     searching: false
   }
 
+  moveBookHandler = (movedBook,newShelf) => {
+    this.props.handleChange(movedBook,newShelf)
+    for(let book of this.state.books) {
+      if(book.id === movedBook.id) {
+        book.shelf = newShelf
+        this.forceUpdate()
+        break
+      }
+    }
+  }
+
   updateQuery = (query) => {
     this.setState({ query: query })
     if(query.length > 0) {
@@ -47,7 +58,7 @@ class SearchBooks extends React.Component {
           { searching && (<div>Searching...</div>)}
           { !searching && query.length > 0 &&
             (
-              <BookShelf handleChange={this.props.handleChange} books={books} title="Search Results" />
+              <BookShelf handleChange={this.moveBookHandler} books={books} title="Search Results" />
             )
           }
         </div>
