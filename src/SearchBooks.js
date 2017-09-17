@@ -7,20 +7,18 @@ class SearchBooks extends React.Component {
 
   state = {
     query: '',
-    books: [],
     searchResults: [],
     searching: false
   }
 
-  moveBookHandler = (movedBook,newShelf) => {
-    this.props.handleChange(movedBook,newShelf)
-    for(let book of this.state.books) {
-      if(book.id === movedBook.id) {
-        book.shelf = newShelf
-        this.forceUpdate()
-        break
+  getBookShelf = (searchResult) => {
+    const myBooks = this.props.myBooks
+    for(const myBook of myBooks) {
+      if(searchResult.id === myBook.id) {
+        return myBook.shelf
       }
     }
+    return ''
   }
 
   updateQuery = (query) => {
@@ -30,6 +28,13 @@ class SearchBooks extends React.Component {
       BooksAPI.search(query,20).then(searchResults => {
         // Our query may have been updated since we searched
         if(!searchResults.error && this.state.query === query) {
+          // If a search result is in our collection, update its shelf
+          for(let searchResult of searchResults) {
+            const shelf = this.getBookShelf(searchResult)
+            if(shelf) {
+              searchResult.shelf = shelf
+            }
+          }
           this.setState({searchResults})
         }
         this.setState({searching:false})
@@ -40,8 +45,10 @@ class SearchBooks extends React.Component {
     }
   }
 
+
   render() {
-    const {query, searching, books, searchResults} = this.state;
+    const {query, searching, searchResults} = this.state;
+
     const searchResultsTitle = `'${query}' - Search Results`
     return (
       <div className="search-books">
@@ -63,7 +70,7 @@ class SearchBooks extends React.Component {
               <BookShelf
                 title={searchResultsTitle}
                 books={searchResults}
-                handleChange={this.moveBookHandler}
+                handleChange={this.props.handleChange}
               />
             )
           }
