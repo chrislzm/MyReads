@@ -56,7 +56,7 @@ class SearchBooks extends React.Component {
         </div>
         <div className="search-books-results">
           <div style={{height: "1em"}}>{ searching && ("Searching...")}</div>
-          { query.length > 0 &&
+          { query.length > 0 && (books.length > 0 || !searching) && 
             (
               <BookShelf
                 title="Search Results"
