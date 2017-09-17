@@ -22,11 +22,11 @@ Basic requirements: Internet connection and browser
 4. To find and add new books, click on the green "+" button on the bottom right to open the search page
 5. Please view the included SEARCH_TERMS.md file for a list of valid search terms
 
-Additional Usage Notes
-----------------------
-Udacity's backend server currently limits searches to 20 results. It also limits search terms to only those listed in SEARCH_TERMS.md. (Partial searches will match the closest search terms in this file.)
+Search Functionality
+--------------------
+Please note that Udacity's servers currently limit searches to 20 results. It also limits search terms to only those listed in SEARCH_TERMS.md. (Partial searches will match the closest search terms in this file.)
 
 Credits
 -------
-* This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
 * Design (stylesheets, images, initial layout) provided by [Richard Kalehoff](https://github.com/richardkalehoff) of [Udacity](https://udacity.com)
+* This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
