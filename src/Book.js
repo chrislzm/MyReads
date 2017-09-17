@@ -67,7 +67,8 @@ const Book = (props) => {
                 <option
                   value={shelf.id}
                   disabled={shelf.disabled}
-                  key={shelf.id}>{shelf.name}>
+                  key={shelf.id}>
+                  {shelf.name}
                 </option>
               ))}
             </select>
@@ -77,6 +78,7 @@ const Book = (props) => {
         <div className="book-authors">{ authors }</div>
       </div>
     </li>
-  )};
+  )
+};
 
-  export default Book
+export default Book

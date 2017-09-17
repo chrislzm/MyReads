@@ -58,7 +58,11 @@ class SearchBooks extends React.Component {
           { searching && (<div>Searching...</div>)}
           { !searching && query.length > 0 &&
             (
-              <BookShelf handleChange={this.moveBookHandler} books={books} title="Search Results" />
+              <BookShelf
+                title="Search Results"
+                books={books}
+                handleChange={this.moveBookHandler}
+              />
             )
           }
         </div>
