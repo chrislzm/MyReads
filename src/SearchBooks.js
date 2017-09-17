@@ -41,6 +41,7 @@ class SearchBooks extends React.Component {
 
   render() {
     const {query, searching, books} = this.state;
+    const searchResultsTitle = `\'${query}\' - Search Results`
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -56,10 +57,10 @@ class SearchBooks extends React.Component {
         </div>
         <div className="search-books-results">
           <div style={{height: "1em"}}>{ searching && ("Searching...")}</div>
-          { query.length > 0 && (books.length > 0 || !searching) && 
+          { query.length > 0 && (books.length > 0 || !searching) &&
             (
               <BookShelf
-                title="Search Results"
+                title={searchResultsTitle}
                 books={books}
                 handleChange={this.moveBookHandler}
               />
