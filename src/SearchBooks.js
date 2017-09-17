@@ -8,6 +8,7 @@ class SearchBooks extends React.Component {
   state = {
     query: '',
     books: [],
+    searchResults: [],
     searching: false
   }
 
@@ -26,21 +27,21 @@ class SearchBooks extends React.Component {
     this.setState({ query: query })
     if(query.length > 0) {
       this.setState({searching:true})
-      BooksAPI.search(query,20).then(books => {
+      BooksAPI.search(query,20).then(searchResults => {
         // Our query may have been updated since we searched
-        if(!books.error && this.state.query === query) {
-          this.setState({books})
+        if(!searchResults.error && this.state.query === query) {
+          this.setState({searchResults})
         }
         this.setState({searching:false})
       })
     } else {
-      // Clear books from results for empty queries
-      this.setState({ books: []})
+      // Clear search results for empty queries
+      this.setState({ searchResults: []})
     }
   }
 
   render() {
-    const {query, searching, books} = this.state;
+    const {query, searching, books, searchResults} = this.state;
     const searchResultsTitle = `'${query}' - Search Results`
     return (
       <div className="search-books">
@@ -57,11 +58,11 @@ class SearchBooks extends React.Component {
         </div>
         <div className="search-books-results">
           <div style={{height: "1em"}}>{ searching && ("Searching...")}</div>
-          { query.length > 0 && (books.length > 0 || !searching) &&
+          { query.length > 0 && (searchResults.length > 0 || !searching) &&
             (
               <BookShelf
                 title={searchResultsTitle}
-                books={books}
+                books={searchResults}
                 handleChange={this.moveBookHandler}
               />
             )
