@@ -9,9 +9,8 @@ MyReads is a bookshelf app that allows you to select and categorize books you ha
 Installation
 ------------
 1. Install [Node.js](https://nodejs.org/en/) and [Create React App](https://github.com/facebookincubator/create-react-app)
-2. Clone/fork the [MyReads respository](https://github.com/chrislzm/MyReads)
-3. npm install
-4. npm start
+2. Clone or fork the [MyReads project](https://github.com/chrislzm/MyReads)
+3. Run 'npm install' and then 'npm start' in the project directory
 
 How to Use
 ----------
@@ -25,7 +24,7 @@ Basic requirements: Internet connection and browser
 
 Additional Usage Notes
 ----------------------
-Udacity's backend server currently limits searches to 20 results, and limits search terms to only those listed in SEARCH_TERMS.md. Partial searches will will only match the closest search terms in this file.
+Udacity's backend server currently limits searches to 20 results. It also limits search terms to only those listed in SEARCH_TERMS.md. (Partial searches will match the closest search terms in this file.)
 
 Credits
 -------
