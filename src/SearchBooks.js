@@ -11,10 +11,10 @@ class SearchBooks extends React.Component {
     searching: false
   }
 
-  getBookShelf = (searchResult) => {
+  getBookShelf = (book) => {
     const myBooks = this.props.myBooks
     for(const myBook of myBooks) {
-      if(searchResult.id === myBook.id) {
+      if(book.id === myBook.id) {
         return myBook.shelf
       }
     }
