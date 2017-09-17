@@ -32,7 +32,6 @@ const createAuthorList = (authors) => {
   if(!authors) return ''
   let authorList
   for(const author of authors) {
-    console.log(author)
     if(!authorList) {
       authorList = author
     } else {
