@@ -17,10 +17,10 @@ How to Use
 Basic requirements: Internet connection and browser
 
 1. After running "npm start", a web browser will open the address: http://localhost:3000/
-2. Three bookshelves will appear (Currently Reading, Want to Read, Read) to which books can be added and removed from
+2. Three bookshelves will appear (Currently Reading, Want to Read, Read) of which books can be added to and removed from
 3. To move books to/from bookshelves, click the green down-arrow next to a book, then select the shelf you would like to move it to
 4. To find and add new books, click on the green "+" button on the bottom right to open the search page
-5. Please view the included SEARCH_TERMS.md file for a list of valid search terms
+5. Please view the included SEARCH_TERMS.md file for a list of valid search terms (and see Search Functionality below for additional notes on search results)
 
 Search Functionality
 --------------------
