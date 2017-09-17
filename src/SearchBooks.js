@@ -41,7 +41,7 @@ class SearchBooks extends React.Component {
 
   render() {
     const {query, searching, books} = this.state;
-    const searchResultsTitle = `\'${query}\' - Search Results`
+    const searchResultsTitle = `'${query}' - Search Results`
     return (
       <div className="search-books">
         <div className="search-books-bar">
