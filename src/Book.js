@@ -44,9 +44,9 @@ const createAuthorList = (authors) => {
 
 const Book = (props) => {
   const {book,handleChange} = props
-  let shelf = book.shelf ? book.shelf : "none"
-  let authors = createAuthorList(book.authors)
-  let thumbnailUrl = book.imageLinks ? `url(${book.imageLinks.thumbnail})` : "none"
+  const shelf = book.shelf ? book.shelf : "none"
+  const authors = createAuthorList(book.authors)
+  const imageUrl = book.imageLinks ? `url(${book.imageLinks.thumbnail})` : "none"
   return (
     <li>
       <div className="book">
@@ -56,7 +56,7 @@ const Book = (props) => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: thumbnailUrl
+              backgroundImage: imageUrl
             }}>
           </div>
           <div className="book-shelf-changer">
