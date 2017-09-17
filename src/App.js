@@ -17,22 +17,15 @@ class BooksApp extends React.Component {
 
   handleChange = (bookToUpdate,newShelf) => {
     BooksAPI.update(bookToUpdate,newShelf).then(() => {
-      let isNewBook = true;
-      // If the book is already in our local state, update its shelf
-      for(let book of this.state.books) {
-        if(book.id === bookToUpdate.id) {
-          isNewBook = false
-          book.shelf = newShelf
-          this.forceUpdate()
-          break
-        }
-      }
-      if(isNewBook) {
-        bookToUpdate.shelf = newShelf
-        this.setState((prevState) => ({
-          books: [...prevState.books,bookToUpdate]
-        }))
-      }
+      // Remove the book from our local state if it's in there already
+      this.setState(prevState => ({
+        books: prevState.books.filter(book => book.id !== bookToUpdate.id)
+      }))
+      // Add the updated book back in
+      bookToUpdate.shelf = newShelf
+      this.setState(prevState => ({
+        books: [...prevState.books,bookToUpdate]
+      }))
     })
   }
 
