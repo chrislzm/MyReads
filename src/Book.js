@@ -13,35 +13,7 @@
 */
 
 import React from 'react'
-
-// Stores shelf options to display to the user
-const shelves = [
-  { //  First shelf acts as a label for the other options so it's disabled
-  id: "move",
-  name: "Move to...",
-  disabled: true
-},
-{
-  id: "currentlyReading",
-  name: "Currently Reading",
-  disabled: false
-},
-{
-  id: "wantToRead",
-  name: "Want to Read",
-  disabled: false
-},
-{
-  id: "read",
-  name: "Read",
-  disabled: false
-},
-{
-  id: "none",
-  name: "None",
-  disabled: false
-},
-]
+import * as Constants from './Constants'
 
 // Generates an author string from authors array (there may be zero to multiple authors)
 const createAuthorList = (authors) => {
@@ -78,7 +50,7 @@ const Book = (props) => {
             <select
               value={ shelf }
               onChange={ (event) => handleChange(book,event.target.value)}>
-              {shelves.map(shelf => (
+              {Constants.SHELVES.map(shelf => (
                 <option
                   value={shelf.id}
                   disabled={shelf.disabled}
