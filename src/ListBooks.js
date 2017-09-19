@@ -1,6 +1,20 @@
+/*
+  MyReads: ListBooks.js
+  By Chris Leung
+
+  This component displays all bookselves in our collection.
+
+  Requires three properties:
+    books: Array of book objects on this bookshelf
+    title: String that contains the name of this bookshelf
+    handleChange: Change handler for moving the book to a new shelf. See app.js
+    for more information.
+*/
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
+import * as Constants from './Constants'
 
 const ListBooks = (props) => {
   const {books,handleChange} = props
@@ -12,21 +26,15 @@ const ListBooks = (props) => {
       <div className="list-books-content">
         <div>
           <div>
-            <BookShelf
-              title="Currently Reading"
-              books={books.filter(book => book.shelf === "currentlyReading")}
-              handleChange={handleChange}
-            />
-            <BookShelf
-              title="Want to Read"
-              books={books.filter(book => book.shelf === "wantToRead")}
-              handleChange={handleChange}
-            />
-            <BookShelf
-              title="Read"
-              books={books.filter(book => book.shelf === "read")}
-              handleChange={handleChange}
-            />
+            {
+              Constants.SHELVES.filter(shelf => !shelf.disabled && shelf.id !== "none").map(shelf => (
+                <BookShelf
+                  title={shelf.name}
+                  books={books.filter(book => book.shelf === shelf.id)}
+                  handleChange={handleChange}
+                />
+              ))
+            }
           </div>
         </div>
       </div>
