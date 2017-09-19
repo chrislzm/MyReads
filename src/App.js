@@ -1,3 +1,15 @@
+/*
+  MyReads: App.js
+  By Chris Leung
+
+  This component controls the main page of the application. It maintains state
+  for all books in our collection. Provides an update handler ("handleChange")
+  to child components for moving books to different shelves or our of
+  our book collection.
+
+  Based on URL path, dislays either our book list or the search page.
+*/
+
 import React from 'react'
 import { Route } from 'react-router-dom'
 import ListBooks from './ListBooks'
@@ -15,13 +27,14 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then(books => this.setState({books}))
   }
 
+  // Handles moving a book (bookToUpdate) to a new shelf (newShelf)
   handleChange = (bookToUpdate,newShelf) => {
     BooksAPI.update(bookToUpdate,newShelf).then(() => {
-      // Remove the book from our local state if it's in there already
+      // Remove the book from state -- if it's there, it contains the old shelf
       this.setState(prevState => ({
         books: prevState.books.filter(book => book.id !== bookToUpdate.id)
       }))
-      // Add the updated book back in
+      // Update state with the updated book
       bookToUpdate.shelf = newShelf
       this.setState(prevState => ({
         books: [...prevState.books,bookToUpdate]
