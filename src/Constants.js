@@ -1,6 +1,21 @@
+/*
+  MyReads: Constants.js
+  By Chris Leung
+
+  Contains all constants for the MyReads application
+
+  SHELVES: Contains information about all bookshelves in our application. To
+  add a new bookshelf, add a new object to this array with the following
+  properties:
+    id: (String) the bookshelf identifier
+    name: (String) the bookshelf title/name
+    disabled: (boolean) disable/enable the shelf when displaying it as an
+    option in a list of possible shelves to move a book to.
+*/
+
 export const SHELVES =
   [
-    { // First shelf acts as a label for the other options so it's disabled
+    { // First shelf acts as a label for the other options, so it's disabled
     id: "move",
     name: "Move to...",
     disabled: true
