@@ -48,7 +48,10 @@ class SearchBooks extends React.Component {
         // one stored in state. The user may have typed a new search query while
         // we were waiting for these results to return, in which case we do not
         // need to display these results.
-        if(!searchResults.error && this.state.searchQuery === newSearchQuery) {
+        if(searchResults.error) {
+          // Clear search screen for queries that return an error
+          this.setState({ searchResults: []})
+        } else if(this.state.searchQuery === newSearchQuery) {
           for(let searchResult of searchResults) {
             // If the book exists in our collection, display its shelf
             const shelf = this.getBookShelf(searchResult)
