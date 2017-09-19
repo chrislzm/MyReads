@@ -1,3 +1,18 @@
+/*
+  MyReads: SearchBooks.js
+  By Chris Leung
+
+  This component allows a user to search for books and move them to bookshelves.
+  The search results are provided by Udacity's backend server via the BooksAPI
+  library.
+
+  Requires two properties:
+    myBooks: Array of all book objects in our collection
+    handleChange: Change handler for moving the book to a new shelf. Passes this
+    to each Book component, allowing the user to move the book to a new shelf.
+    See app.js for more information.
+*/
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
@@ -6,11 +21,13 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends React.Component {
 
   state = {
-    query: '',
+    searchQuery: '',
     searchResults: [],
-    searching: false
+    searchComplete: true
   }
 
+  // Takes a book object and returns its shelf if it exists in our collection.
+  // Returns empty string otherwise.
   getBookShelf = (book) => {
     const myBooks = this.props.myBooks
     for(const myBook of myBooks) {
@@ -21,15 +38,18 @@ class SearchBooks extends React.Component {
     return ''
   }
 
-  updateQuery = (query) => {
-    this.setState({ query: query })
-    if(query.length > 0) {
-      this.setState({searching:true})
-      BooksAPI.search(query,20).then(searchResults => {
-        // Our query may have been updated since we searched
-        if(!searchResults.error && this.state.query === query) {
-          // If a search result is in our collection, update its shelf
+  search = (newSearchQuery) => {
+    this.setState({ searchQuery: newSearchQuery })
+    if(newSearchQuery.length > 0) {
+      this.setState({searchComplete:false})
+      BooksAPI.search(newSearchQuery,20).then(searchResults => {
+        // Only continue if no error AND the current query still matches the
+        // one stored in state. The user may have typed a new search query while
+        // we were waiting for these results to return, in which case we do not
+        // need to display these results.
+        if(!searchResults.error && this.state.searchQuery === newSearchQuery) {
           for(let searchResult of searchResults) {
+            // If the book exists in our collection, display its shelf
             const shelf = this.getBookShelf(searchResult)
             if(shelf) {
               searchResult.shelf = shelf
@@ -37,19 +57,18 @@ class SearchBooks extends React.Component {
           }
           this.setState({searchResults})
         }
-        this.setState({searching:false})
+        this.setState({searchComplete:true})
       })
     } else {
-      // Clear search results for empty queries
+      // Clear search screen for empty queries
       this.setState({ searchResults: []})
     }
   }
 
-
   render() {
-    const {query, searching, searchResults} = this.state;
+    const {searchQuery, searchComplete, searchResults} = this.state;
 
-    const searchResultsTitle = `'${query}' - Search Results`
+    const searchResultsTitle = `'${searchQuery}' - Search Results`
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -58,14 +77,16 @@ class SearchBooks extends React.Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              value={query}
-              onChange={(event) => this.updateQuery(event.target.value)}
+              value={searchQuery}
+              onChange={(event) => this.search(event.target.value)}
             />
           </div>
         </div>
         <div className="search-books-results">
-          <div style={{height: "1em"}}>{ searching && ("Searching...")}</div>
-          { query.length > 0 && (searchResults.length > 0 || !searching) &&
+          <div style={{height: "1em"}}>{ !searchComplete && ("Searching...")}</div>
+          { // Only display results if we have a query AND we have results to
+            // show OR our search is complete and has turned up no results.
+            searchQuery.length > 0 && (searchComplete || searchResults.length > 0) &&
             (
               <BookShelf
                 title={searchResultsTitle}
