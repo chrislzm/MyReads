@@ -7,8 +7,10 @@
   Requires three properties:
     books: Array of book objects on this bookshelf
     title: String that contains the name of this bookshelf
-    handleChange: Change handler for moving the book to a new shelf. See app.js
-    for more information.
+    handleChange: Change handler for moving the book to a new shelf. Passes
+    this to the BookShelf component, which then passes it to the Book component,
+    allowing the user to move the book to a new shelf. See app.js for more
+    information.
 */
 
 import React from 'react'
