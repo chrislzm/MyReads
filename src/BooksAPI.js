@@ -1,3 +1,25 @@
+/*
+  MyReads: BooksAPI.js
+  By Udacity/Richard Kalehoff
+
+  A JavaScript API for the provided Udacity backend.
+
+  Function descriptions:
+
+  getAll()
+    Returns a Promise which resolves to a JSON object containing a collection of book objects.
+    This collection represents the books currently in the bookshelves in the app.
+
+  update(book, shelf)
+    book: <Object> containing at minimum an id attribute
+    shelf: <String> contains one of ["wantToRead", "currentlyReading", "read"]
+    Returns a Promise which resolves to a JSON object containing the response data of the POST request
+
+  search(query, maxResults)
+    query: <String>
+    maxResults: <Integer> Due to the nature of the backend server, search results are capped at 20, even if this is set higher.
+    Returns a Promise which resolves to a JSON object containing a collection of book objects.
+*/
 
 const api = "https://reactnd-books-api.udacity.com"
 
