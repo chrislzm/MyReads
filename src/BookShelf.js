@@ -4,8 +4,8 @@
 
   This component displays a bookshelf name, number of books it contains, and
   each book on the bookshelf (using the Book component). Passes a change handler
-  from App.js to each Book component that allows the user to move the book to a
-  new shelf.
+  from App.js/ListBooks.js to each Book component that allows the user to move
+  the book to a new shelf.
 
   Requires three properties:
     books: Array of book objects on this bookshelf
