@@ -2,12 +2,12 @@
   MyReads: App.js
   By Chris Leung
 
-  This component controls the main page of the application. It maintains state
-  for all books in our collection. Provides an update handler ("handleChange")
-  to child components for moving books to different shelves or our of
-  our book collection.
-
-  Based on URL path, dislays either our book list or the search page.
+  Description:
+  React component that controls the main page of the application. It maintains
+  state for all books in our collection. Provides an update handler
+  ("handleChange") to child components for moving books to different shelves or
+  our of our book collection.  Uses React Router to dislay either our
+  bookshelves or the search page based on the current URL.
 */
 
 import React from 'react'

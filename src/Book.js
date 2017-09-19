@@ -2,13 +2,15 @@
   MyReads: Book.js
   By Chris Leung
 
-  This component displays a single book along with its title and author. It
-  also provides a control that allows user to move the book to a different
+  Description:
+
+  React component that displays a single book along with its title and author.
+  It also provides a control that allows user to move the book to a different
   shelf. It will select the book's current shelf by default.
 
-  Requires two properties:
-    book: Book object to display.
-    handleChange: Change handler for moving the book to a new shelf. See app.js
+  Props:
+    book: <Object> Book object to display.
+    handleChange: <Function> Change handler for moving the book to a new shelf. See app.js
     for more information.
 */
 

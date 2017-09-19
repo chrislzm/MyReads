@@ -2,15 +2,16 @@
   MyReads: SearchBooks.js
   By Chris Leung
 
-  This component allows a user to search for books and move them to bookshelves.
-  The search results are provided by Udacity's backend server via the BooksAPI
-  library.
+  Descriptions:
+  React component that allows a user to search for books and move them to
+  bookshelves. The search results are provided by Udacity's backend server via
+  the BooksAPI library.
 
-  Requires two properties:
-    myBooks: Array of all book objects in our collection
-    handleChange: Change handler for moving the book to a new shelf. Passes this
-    to each Book component, allowing the user to move the book to a new shelf.
-    See app.js for more information.
+  Props:
+    myBooks: <Array> All book objects in our collection
+    handleChange: <Function> Change handler for moving the book to a new shelf.
+    Passes this to each Book component, allowing the user to move the book to a
+    new shelf. See app.js for more information.
 */
 
 import React from 'react'

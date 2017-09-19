@@ -2,15 +2,15 @@
   MyReads: BookShelf.js
   By Chris Leung
 
-  This component displays a bookshelf name, number of books it contains, and
-  each book on the bookshelf (using the Book component). Passes a change handler
-  from App.js/ListBooks.js to each Book component that allows the user to move
-  the book to a new shelf.
+  React component that displays a bookshelf name, number of books it contains,
+  and each book on the bookshelf (using the Book component). Passes a change
+  handler from App.js/ListBooks.js to each Book component that allows the user
+  to move the book to a new shelf.
 
-  Requires three properties:
-    books: Array of book objects on this bookshelf
-    title: String that contains the name of this bookshelf
-    handleChange: Change handler for moving the book to a new shelf. See app.js
+  Props:
+    books: <Array> Book objects on this bookshelf
+    title: <String> The name of this bookshelf
+    handleChange: <Function> Change handler for moving the book to a new shelf. See app.js
     for more information.
 */
 

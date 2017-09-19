@@ -2,9 +2,9 @@
   MyReads: index.js
   By Chris Leung
 
-  Renders the application to the DOM.
-
-  Uses BrowserRouter to keep the application in sync with the URL.
+  Description:
+  Renders the application to the DOM. Wraps the app in React Router to keep the
+  application in sync with the URL.
 */
 
 import React from 'react'
