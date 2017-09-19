@@ -1,3 +1,12 @@
+/*
+  MyReads: index.js
+  By Chris Leung
+
+  Renders the application to the DOM.
+
+  Uses BrowserRouter to keep the application in sync with the URL.
+*/
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
