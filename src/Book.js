@@ -1,7 +1,22 @@
+/*
+  MyReads: Book.js
+  By Chris Leung
+
+  This component displays a single book along with its title and author. It
+  also provides a control that allows user to move the book to a different
+  shelf. It will select the book's current shelf by default.
+
+  Requires two properties:
+    book: Book object to display.
+    handleChange: Change handler for moving the book to a new shelf. See app.js
+    for more information.
+*/
+
 import React from 'react'
 
+// Stores shelf options to display to the user
 const shelves = [
-  { //  This first shelf is a label for the select element, so it's disabled
+  { //  First shelf acts as a label for the other options so it's disabled
   id: "move",
   name: "Move to...",
   disabled: true
@@ -28,6 +43,7 @@ const shelves = [
 },
 ]
 
+// Generates an author string from authors array (there may be zero to multiple authors)
 const createAuthorList = (authors) => {
   if(!authors) return ''
   let authorList
@@ -43,9 +59,9 @@ const createAuthorList = (authors) => {
 
 const Book = (props) => {
   const {book,handleChange} = props
-  const shelf = book.shelf ? book.shelf : "none"
   const authors = createAuthorList(book.authors)
   const imageUrl = book.imageLinks ? `url(${book.imageLinks.thumbnail})` : "none"
+  const shelf = book.shelf ? book.shelf : "none"
   return (
     <li>
       <div className="book">
