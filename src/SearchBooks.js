@@ -8,7 +8,8 @@
   the BooksAPI library.
 
   Props:
-    myBooks: <Array> All book objects in our collection
+    myBookShelfMap: <Map> Contains mapping of book.id to book.shelf of all
+    books in our collection.
     handleChange: <Function> Change handler for moving the book to a new shelf.
     Passes this to each Book component, allowing the user to move the book to a
     new shelf. See app.js for more information.
