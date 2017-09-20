@@ -4,8 +4,6 @@
 
   A JavaScript API for the provided Udacity backend.
 
-  Function descriptions:
-
   getAll()
     Returns a Promise which resolves to a JSON object containing a collection of book objects.
     This collection represents the books currently in the bookshelves in the app.
