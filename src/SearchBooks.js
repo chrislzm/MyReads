@@ -44,14 +44,13 @@ class SearchBooks extends React.Component {
     if(newSearchQuery.length > 0) {
       this.setState({searchComplete:false})
       BooksAPI.search(newSearchQuery,20).then(searchResults => {
-        // Only continue if no error AND the current query still matches the
-        // one stored in state. The user may have typed a new search query while
-        // we were waiting for these results to return, in which case we do not
-        // need to display these results.
         if(searchResults.error) {
           // Clear search screen for queries that return an error
           this.setState({ searchResults: []})
-        } else if(this.state.searchQuery === newSearchQuery) {
+        }
+        // Check if the user typed a new search query while we were waiting for
+        // these results (in which case we do not need to display them)
+        else if(this.state.searchQuery === newSearchQuery) {
           for(let searchResult of searchResults) {
             // If the book exists in our collection, display its shelf
             const shelf = this.getBookShelf(searchResult)
