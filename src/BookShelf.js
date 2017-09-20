@@ -2,6 +2,7 @@
   MyReads: BookShelf.js
   By Chris Leung
 
+  Description:
   React component that displays a bookshelf name, number of books it contains,
   and each book on the bookshelf (using the Book component). Passes a change
   handler from App.js/ListBooks.js to each Book component that allows the user
