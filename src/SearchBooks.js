@@ -30,11 +30,9 @@ class SearchBooks extends React.Component {
   // Takes a book object and returns its shelf if it exists in our collection.
   // Returns empty string otherwise.
   getBookShelf = (book) => {
-    const myBooks = this.props.myBooks
-    for(const myBook of myBooks) {
-      if(book.id === myBook.id) {
-        return myBook.shelf
-      }
+    const myBookShelfMap = this.props.myBookShelfMap
+    if(myBookShelfMap.has(book.id)) {
+      return myBookShelfMap.get(book.id)
     }
     return ''
   }

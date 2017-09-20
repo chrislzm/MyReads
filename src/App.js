@@ -42,18 +42,29 @@ class BooksApp extends React.Component {
     })
   }
 
+  createBookIdToShelfMap(books) {
+    const map = new Map()
+    for(const book of books) {
+      map.set(book.id,book.shelf)
+    }
+    return map
+  }
+
   render() {
+    const { books } = this.state
+    const myBookShelfMap = this.createBookIdToShelfMap(books)
+
     return (
       <div className="app">
         <Route exact path="/" render={() =>(
           <ListBooks
-            books={this.state.books}
+            books={books}
             handleChange={this.handleChange}
           />
         )}/>
         <Route path="/search" render={() => (
           <SearchBooks
-            myBooks={this.state.books}
+            myBookShelfMap={myBookShelfMap}
             handleChange={this.handleChange}
           />
         )}/>
