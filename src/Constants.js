@@ -15,6 +15,8 @@
       option in a list of possible shelves to move a book to.
 */
 
+export const NO_BOOK_COVER_DEFAULT_IMAGE_URL = "http://via.placeholder.com/128x193?text=No%20Cover"
+
 export const SHELVES =
   [
     { // First shelf acts as a label for the other options, so it's disabled

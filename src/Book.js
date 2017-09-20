@@ -3,7 +3,6 @@
   By Chris Leung
 
   Description:
-
   React component that displays a single book along with its title and author.
   It also provides a control that allows user to move the book to a different
   shelf. It will select the book's current shelf by default.
@@ -34,7 +33,7 @@ const createAuthorList = (authors) => {
 const Book = (props) => {
   const {book,handleChange} = props
   const authors = createAuthorList(book.authors)
-  const imageUrl = book.imageLinks ? `url(${book.imageLinks.thumbnail})` : "none"
+  const imageUrl = book.imageLinks ? `url(${book.imageLinks.thumbnail})` : `url(${Constants.NO_BOOK_COVER_DEFAULT_IMAGE_URL})`
   const shelf = book.shelf ? book.shelf : "none"
   return (
     <li>
