@@ -35,6 +35,7 @@ const ListBooks = (props) => {
                   title={shelf.name}
                   books={books.filter(book => book.shelf === shelf.id)}
                   handleChange={handleChange}
+                  key={shelf.id}
                 />
               ))
             }
